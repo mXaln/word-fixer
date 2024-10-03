@@ -1,0 +1,24 @@
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 2vh;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-height: 90vh;
+  overflow-y: hidden;
+  overflow-x: auto;
+  margin: 1vw;
+}
+
+.nameItem {
+  color: white;
+  justify-content: start;
+  text-transform: none;
+  height: 1vh;
+}
+
+.nameItem:hover {
+  color: #f2fd05;
+  background: none;
+}

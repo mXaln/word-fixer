@@ -1,0 +1,18 @@
+{
+  "name": "word-fixer",
+  "version": "0.0.1",
+  "description": "Word Fixer",
+  "license": "MIT",
+  "author": {
+    "name": "Max Allen",
+    "email": "mxaln@gmail.com",
+    "url": "https://github.com/mxaln"
+  },
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+    "postinstall": "npm run rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
+  },
+  "dependencies": {}
+}

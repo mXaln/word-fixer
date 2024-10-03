@@ -1,0 +1,20 @@
+.name {
+  padding: 1vh;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.exit {
+  user-select: none;
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+  cursor: pointer;
+}
+
+.exit:hover {
+  color: red;
+}
