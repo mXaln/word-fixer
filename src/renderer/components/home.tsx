@@ -25,6 +25,7 @@ export default function Home() {
           .sort()
           .map((name) => (
             <Button
+              key={name}
               className="nameItem"
               color="inherit"
               variant="text"

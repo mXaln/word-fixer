@@ -8,14 +8,13 @@
   max-height: 90vh;
   overflow-y: hidden;
   overflow-x: auto;
-  margin: 1vw;
 }
 
 .nameItem {
   color: white;
-  justify-content: start;
+  justify-content: start !important;
   text-transform: none;
-  height: 1vh;
+  height: 2vh;
 }
 
 .nameItem:hover {
