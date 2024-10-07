@@ -83,7 +83,7 @@ export default async function processDirectory(directory: string) {
       }
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 
   return results;
