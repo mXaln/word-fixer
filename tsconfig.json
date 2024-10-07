@@ -4,7 +4,7 @@
     "target": "es2022",
     "module": "commonjs",
     "lib": ["dom", "es2022"],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "strict": true,
     "sourceMap": true,
     "moduleResolution": "node",
@@ -13,7 +13,7 @@
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": ".erb/dll",
-    "types": [ "@types/wicg-file-system-access" ]
+    "types": [ "@types/wicg-file-system-access", "node", "jest" ],
   },
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"]
 }
