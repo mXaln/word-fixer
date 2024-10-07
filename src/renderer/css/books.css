@@ -1,0 +1,10 @@
+.books {
+  overflow-y: auto;
+}
+
+.exit {
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+  cursor: pointer;
+}

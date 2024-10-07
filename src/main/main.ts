@@ -9,11 +9,13 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import fs from 'fs';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import processDirectory from './utils';
 
 class AppUpdater {
   constructor() {
@@ -25,10 +27,19 @@ class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
-ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
-  console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('pong'));
+ipcMain.handle('directory:select', async () => {
+  const { canceled, filePaths } = await dialog.showOpenDialog({
+    properties: ['openDirectory'],
+  });
+  if (!canceled && filePaths.length > 0) {
+    return filePaths[0]; // Return the selected folder path
+  }
+  return null;
+});
+
+ipcMain.on('directory:selected', async (event, directory) => {
+  const results = await processDirectory(directory);
+  event.sender.send('directory:result', results);
 });
 
 if (process.env.NODE_ENV === 'production') {
