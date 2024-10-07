@@ -2,7 +2,7 @@
 import '../css/home.css';
 import { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
-import Result from '../../types';
+import { Result } from 'app';
 import Books from './books';
 
 export default function Main() {

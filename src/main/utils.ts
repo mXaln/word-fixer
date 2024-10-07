@@ -2,11 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import usfmjs from 'usfm-js';
 import _ from 'underscore';
+import { Result } from 'app';
 import namesToStrongs from '../../assets/names_to_strongs.json';
 import strongs from '../../assets/strongs.json';
-import Result from '../types';
-
-const { toJSON } = usfmjs;
 
 export default async function processDirectory(directory: string) {
   const results: Result[] = [];
@@ -45,7 +43,7 @@ export default async function processDirectory(directory: string) {
           encoding: 'utf8',
           flag: 'r',
         });
-        const book = toJSON(document);
+        const book = usfmjs.toJSON(document);
 
         names.forEach((obj: any) => {
           obj.refs.forEach((ref: string) => {
@@ -66,15 +64,14 @@ export default async function processDirectory(directory: string) {
                   verseObj.type === 'text' &&
                   !verseObj.text.includes(obj.name)
                 ) {
-                  results.push(
-                    new Result(
-                      bookSlug,
-                      obj.name,
-                      obj.strong,
-                      ref,
-                      verseObj.text,
-                    ),
-                  );
+                  const result: Result = {
+                    bookSlug,
+                    name: obj.name,
+                    strong: obj.strong,
+                    ref,
+                    text: verseObj.text,
+                  };
+                  results.push(result);
                 }
               });
             }

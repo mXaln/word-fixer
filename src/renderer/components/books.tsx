@@ -1,6 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close';
-import Result from '../../types';
 import '../css/books.css';
+import { Result } from 'app';
 
 interface BooksProps {
   result: Result[];
