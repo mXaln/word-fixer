@@ -37,7 +37,7 @@ export default function Main() {
 
     return data.length > 0 ? (
       <Books
-        result={data}
+        results={data}
         goHome={() => {
           setData([]);
         }}

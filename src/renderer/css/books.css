@@ -1,5 +1,16 @@
 .books {
+  height: auto;
+  max-height: 100%;
   overflow-y: auto;
+}
+
+.bookReference, .bookStrong {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.bookItem {
+  margin-bottom: 2vh;
 }
 
 .exit {

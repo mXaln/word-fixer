@@ -5,7 +5,7 @@
 body {
   position: relative;
   color: white;
-  height: 100vh;
+  height: 94vh;
   background: linear-gradient(
     200.96deg,
     #fedc2a -29.09%,
@@ -13,8 +13,12 @@ body {
     #7a2c9e 129.35%
   );
   font-family: sans-serif;
-  overflow-y: hidden;
+  overflow: hidden;
   padding: 20px;
+}
+
+#root, .main {
+  height: 100%;
 }
 
 li {

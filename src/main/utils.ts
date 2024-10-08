@@ -18,9 +18,7 @@ export default async function processDirectory(directory: string) {
               return strong === key;
             })
             .map(() => {
-              return strongs[strong as keyof typeof strongs];
-            })
-            .map((refs) => {
+              const refs = _.uniq(strongs[strong as keyof typeof strongs]);
               return { name, strong, refs };
             });
         },
@@ -29,6 +27,7 @@ export default async function processDirectory(directory: string) {
   );
 
   const files = fs.readdirSync(directory);
+
   try {
     files.forEach((file) => {
       const filePath = path.join(directory, file);
@@ -59,21 +58,25 @@ export default async function processDirectory(directory: string) {
             const place = book.chapters[chapter][verse];
 
             if (place) {
-              place.verseObjects.forEach((verseObj: any) => {
-                if (
-                  verseObj.type === 'text' &&
-                  !verseObj.text.includes(obj.name)
-                ) {
-                  const result: Result = {
-                    bookSlug,
-                    name: obj.name,
-                    strong: obj.strong,
-                    ref,
-                    text: verseObj.text,
-                  };
-                  results.push(result);
-                }
-              });
+              const verseText = place.verseObjects
+                .filter((verseObj: any) => {
+                  return 'text' in verseObj;
+                })
+                .map((verseObj: any) => {
+                  return verseObj.text;
+                })
+                .join(' ');
+
+              if (!verseText.includes(obj.name)) {
+                const result: Result = {
+                  bookSlug,
+                  name: obj.name,
+                  strong: obj.strong,
+                  ref,
+                  text: verseText,
+                };
+                results.push(result);
+              }
             }
           });
         });
